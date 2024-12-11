@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurante</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="imagens/avatar.png" type="image/png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:wght@400;700&display=swap"
+        rel="">
+</head>
+
+<body>
+    <header>
+        <a href="index.html" class="logo">
+            <img src="imagens/Logo_Elssos_bistro.png" alt="Logo Elsso's Bistrô">
+
+        </a>
+
+        <nav>
+            <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+            <div class="nav-links" id="navLinks">
+                <a href="#menu">Menu</a>
+                <a href="#entrega">Entrega</a>
+                <a href="#sobre">Sobre Nós</a>
+                <a href="blackjack.html">Black Jack</a>
+                <button class="login" onclick="window.location.href='login.html'">Login/Cadastro</button>
+            </div>
+        </nav>
+
+
+
+
+    </header>
+    <div class="inicial">
+        <img src="imagens/Restaurante1792x1024.png" alt="Restaurante" class="back">
+
+        <h1 class="slogan">Explorando os Sete Mares dos Sabores</h1>
+
+    </div>
+
+    <div class="container">
+        <h2>Menu</h2>
+        <div class="menu-items">
+
+
+        </div>
+
+
+
+        <div class="sobre">
+            <h2>Sobre Nós</h2>
+            <p>No coração do All Blue, onde todos os mares se encontram, nasceu o Elsso’s Bistrô, um refúgio para
+                aventureiros, sonhadores e amantes da boa comida. Inspirado pelo espírito dos piratas e pelas riquezas
+                culinárias dos sete mares, nosso restaurante combina sabores de terras distantes com a paixão pela
+                exploração e pela partilha.
+
+                Cada prato é uma homenagem às lendas marítimas e às maravilhas do oceano, cuidadosamente preparado com
+                ingredientes que contam histórias. Desde os frutos do mar frescos de ilhas paradisíacas até carnes
+                temperadas com especiarias exóticas, aqui você embarca em uma jornada gastronômica única.
+
+                Nosso ambiente, decorado com mapas, baús de tesouro e elementos náuticos, é acolhedor e autêntico,
+                remetendo às tavernas onde piratas celebravam suas vitórias. Nossa equipe, guiada pelo lema “Explorando
+                os Sete Mares dos Sabores”, está pronta para transformar sua visita em uma experiência memorável.
+
+                Venha para o Elsso's Bistrô e descubra que navegar pelos sabores é a maior das aventuras!</p>
+
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDBIe8hk27H9_0HxBpsBW5skQAP9wh7hHI&q=-60.0000,0.0000&zoom=3"
+                    loading="lazy" allowfullscreen>
+                </iframe>
+            </div>
+           
+        </div>
+        
+
+        <div class="sobre">
+            <h2>Detalhes de Entrega</h2>
+            <p>No Elsso´s Bistrô, garantimos que sua refeição chegue com a mesma qualidade que servimos em nosso salão.
+                Nossa equipe de entregadores está pronta para atender toda a região costeira do All Blue, incluindo
+                vilas próximas e ilhas conectadas por parceiros marítimos, com entregas diárias das 11h às 23h. A taxa
+                de entrega varia conforme a distância, começando em ฿500, sendo gratuita para pedidos acima de ฿13.000.
+                Garantimos entrega em até 1 milha náutica para áreas próximas e até 2 milhas para localidades mais
+                distantes. Experimente nossos pratos deliciosos e receba com qualidade e eficiência!</p>
+
+
+        </div>
+
+        <div class="radio-pirata-container">
+            <h1 class="radio-pirata-title">🏴‍☠️ Rádio Pirata</h1>
+            <div class="radio-pirata-search">
+                <button class="radio-pirata-load-button">Carregar Músicas Temáticas</button>
+            </div>
+            <div class="radio-pirata-player" style="display: none;">
+                <h2 class="radio-pirata-track-title">🎶 Tocando agora:</h2>
+                <div class="radio-pirata-video-player"></div>
+                <button class="radio-pirata-next-button">⏭️ Próxima Música</button>
+            </div>
+        </div>
+        
+
+    </div>
+
+
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="imagens/Logo_Elssos_bistro.png" alt="Logo" />
+            </div>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#about">Sobre</a>
+                <a href="#services">Serviços</a>
+                <a href="#contact">Contato</a>
+            </div>
+            <div class="footer-social">
+                <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+                        <path
+                            d="M25,3C12.85,3,3,12.85,3,25c0,11.03,8.125,20.137,18.712,21.728V30.831h-5.443v-5.783h5.443v-3.848 c0-6.371,3.104-9.168,8.399-9.168c2.536,0,3.877,0.188,4.512,0.274v5.048h-3.612c-2.248,0-3.033,2.131-3.033,4.533v3.161h6.588 l-0.894,5.783h-5.694v15.944C38.716,45.318,47,36.137,47,25C47,12.85,37.15,3,25,3z">
+                        </path>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+                        <path
+                            d="M 16 3 C 8.83 3 3 8.83 3 16 L 3 34 C 3 41.17 8.83 47 16 47 L 34 47 C 41.17 47 47 41.17 47 34 L 47 16 C 47 8.83 41.17 3 34 3 L 16 3 z M 37 11 C 38.1 11 39 11.9 39 13 C 39 14.1 38.1 15 37 15 C 35.9 15 35 14.1 35 13 C 35 11.9 35.9 11 37 11 z M 25 14 C 31.07 14 36 18.93 36 25 C 36 31.07 31.07 36 25 36 C 18.93 36 14 31.07 14 25 C 14 18.93 18.93 14 25 14 z M 25 16 C 20.04 16 16 20.04 16 25 C 16 29.96 20.04 34 25 34 C 29.96 34 34 29.96 34 25 C 34 20.04 29.96 16 25 16 z">
+                        </path>
+                    </svg>
+                </a>
+                <a href="https://www.twitter.com" target="_blank" aria-label="Twitter">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+                        <path
+                            d="M 50.0625 10.4375 C 48.214844 11.257813 46.234375 11.808594 44.152344 12.058594 C 46.277344 10.785156 47.910156 8.769531 48.675781 6.371094 C 46.691406 7.546875 44.484375 8.402344 42.144531 8.863281 C 40.269531 6.863281 37.597656 5.617188 34.640625 5.617188 C 28.960938 5.617188 24.355469 10.21875 24.355469 15.898438 C 24.355469 16.703125 24.449219 17.488281 24.625 18.242188 C 16.078125 17.8125 8.503906 13.71875 3.429688 7.496094 C 2.542969 9.019531 2.039063 10.785156 2.039063 12.667969 C 2.039063 16.234375 3.851563 19.382813 6.613281 21.230469 C 4.925781 21.175781 3.339844 20.710938 1.953125 19.941406 C 1.953125 19.984375 1.953125 20.027344 1.953125 20.070313 C 1.953125 25.054688 5.5 29.207031 10.199219 30.15625 C 9.339844 30.390625 8.429688 30.515625 7.492188 30.515625 C 6.828125 30.515625 6.183594 30.453125 5.554688 30.328125 C 6.867188 34.410156 10.664063 37.390625 15.160156 37.472656 C 11.644531 40.230469 7.210938 41.871094 2.390625 41.871094 C 1.558594 41.871094 0.742188 41.824219 -0.0585938 41.726563 C 4.488281 44.648438 9.894531 46.347656 15.703125 46.347656 C 34.617188 46.347656 44.960938 30.679688 44.960938 17.09375 C 44.960938 16.648438 44.949219 16.199219 44.933594 15.761719 C 46.941406 14.3125 48.683594 12.5 50.0625 10.4375 Z">
+                        </path>
+                    </svg>
+                </a>
+            </div>
+
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Elsso´s Bistrô.</p>
+        </div>
+    </footer>
+
+    <script>
+
+        const menuItems = [
+            {
+                name: "Risoto de Frutos do Mar",
+                image: "imagens/Risoto.png",
+                description: "Uma variação de risoto feita com uma variedade de frutos do mar, como anéis de lula, tentáculos de polvo e camarões.",
+                price: "฿6.800"
+            },
+            {
+                name: "Carne Mizu Mizu",
+                image: "imagens/Carne Mizu Mizu.png",
+                description: "Uma especialidade da Ilha Gyojin, feita com carne marinada em um molho especial à base de frutos do mar.",
+                price: "฿6.800"
+            },
+            {
+                name: "Sopa de Abóbora de Skypiea",
+                image: "imagens/Sopa de Abóbora de Skypiea.png",
+                description: "Uma deliciosa sopa feita com as melhores abóboras de Skypiea, famosa entre os habitantes da ilha no céu.",
+                price: "฿6.800"
+            },
+            {
+                name: "Curry Picante do Sanji",
+                image: "imagens/Curry Picante do Elsso.png",
+                description: "Feito com temperos do All Blue, vegetais frescos e carne macia, perfeito para quem aprecia uma boa dose de sabor.",
+                price: "฿6.800"
+            },
+            {
+                name: "Carne de Dragão do Banquete de Wano",
+                image: "imagens/Carne de Dragão do Banquete de Wano.png",
+                description: "Assada lentamente e temperada com especiarias locais de Wano, essa carne é uma escolha especial.",
+                price: "฿6.800"
+            },
+            {
+                name: "Banquete do Capitão dos Sete Mares",
+                image: "imagens/Banquete do Capitão dos ste mares.webp",
+                description: "Um banquete digno de um capitão pirata, com frutos do mar frescos e grelhados cuidadosamente.",
+                price: "฿6.800"
+            },
+            {
+                name: "Bandeja de Bolo de Chocolate",
+                image: "imagens/bolo de chocolate.jpg",
+                description: "Uma sobremesa deliciosa, feita com camadas de bolo de chocolate de leite e cereais crocantes, perfeita para adoçar sua aventura.",
+                price: "฿4.500"
+            },
+            {
+                name: "Tartare de Polvo e Anchovas",
+                image: "imagens/Tartare de Polvo e Anchovas.jpg",
+                description: "Uma combinação fresca de polvo picado e anchovas, temperada com limão e azeite, servida com torradas crocantes.",
+                price: "฿6.800"
+            },
+            {
+                name: "Costela de Kraken Grelhada",
+                image: "imagens/Costela de Kraken Grelhada.jpg",
+                description: "Costelas gigantes de Kraken marinadas por 24 horas e grelhadas até a perfeição, acompanhadas de molho barbecue exclusivo.",
+                price: "฿9.500"
+            }
+        ];
+
+        if (!localStorage.getItem("menuItems")) {
+            localStorage.setItem("menuItems", JSON.stringify(menuItems));
+        }
+
+        function loadMenu() {
+            const storedMenu = localStorage.getItem("menuItems");
+            const menu = storedMenu ? JSON.parse(storedMenu) : [];
+
+            const menuContainer = document.querySelector(".menu-items");
+            menuContainer.innerHTML = "";
+
+            menu.forEach(item => {
+                menuContainer.innerHTML += `
+                <div class="menu-item">
+                    <img src="${item.image}" alt="${item.name}">
+                    <h3>${item.name}</h3>
+                    <p>${item.description}</p>
+                    <div class="preco-carrinho">
+                        <span class="preco">${item.price}</span>
+                        <button class="adicionar-carrinho">Adicionar</button>
+                    </div>
+                </div>
+            `;
+            });
+        }
+
+       
+        document.addEventListener("DOMContentLoaded", loadMenu);
+
+        function toggleMenu() {
+            const navLinks = document.getElementById("navLinks");
+            const logo = document.querySelector(".logo");
+            const header = document.querySelector("header")
+
+          
+            navLinks.classList.toggle("active");
+
+           
+            if (navLinks.classList.contains("active")) {
+                logo.style.display = "none";
+                header.style.justifyContent = "center"
+            } else {
+                logo.style.display = "block"; 
+                header.style.justifyContent = "space-between"
+
+            }
+        }
+
+
+
+
+
+
+        const apiKey = 'AIzaSyCWw-_e-NxX0lwBcEYCMVVjO7TkJJfg__Y';
+let videos = [];
+let currentVideoIndex = 0;
+
+document.querySelector('.radio-pirata-load-button').addEventListener('click', async () => {
+    const searchUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=pirate%20music&type=video&key=${apiKey}&maxResults=10`;
+
+    try {
+        const response = await fetch(searchUrl);
+        const data = await response.json();
+        videos = await Promise.all(
+            data.items
+                .filter(video => video.id.videoId)
+                .map(async video => {
+                    const videoDetails = await checkVideoAvailability(video.id.videoId);
+                    return videoDetails ? video : null;
+                })
+        );
+
+        videos = videos.filter(video => video !== null);
+
+        if (videos.length > 0) {
+            document.querySelector('.radio-pirata-search').style.display = 'none';
+            document.querySelector('.radio-pirata-player').style.display = 'block';
+            playVideo(0);
+        } else {
+            alert('Nenhum vídeo válido encontrado!');
+        }
+    } catch (error) {
+        console.error('Erro ao buscar vídeos:', error);
+    }
+});
+
+document.querySelector('.radio-pirata-next-button').addEventListener('click', () => {
+    currentVideoIndex = (currentVideoIndex + 1) % videos.length;
+    playVideo(currentVideoIndex);
+});
+
+async function checkVideoAvailability(videoId) {
+    const videoUrl = `https://www.googleapis.com/youtube/v3/videos?part=status&id=${videoId}&key=${apiKey}`;
+    const response = await fetch(videoUrl);
+    const data = await response.json();
+    return data.items.length > 0 && data.items[0].status.embeddable;
+}
+
+function playVideo(index) {
+    const video = videos[index];
+    const videoId = video.id.videoId;
+    const title = video.snippet.title;
+
+    document.querySelector('.radio-pirata-track-title').innerText = `🎶 Tocando agora: ${title}`;
+    document.querySelector('.radio-pirata-video-player').innerHTML = `
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}?autoplay=1" 
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    `;
+}
+
+
+    </script>
+</body>
+
+</html>

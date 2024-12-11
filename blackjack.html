@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blackjack Elsso´s Bistrô</title>
+  <link rel="icon" href="imagens/avatar.png" type="image/png">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #2b2b2b;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+    #game-container {
+      margin: 20px auto;
+      max-width: 600px;
+      background: #444;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    button:hover {
+      transform: scale(1.1);
+    }
+    button#hit {
+      background: #4caf50;
+      color: white;
+    }
+    button#stand {
+      background: #f44336;
+      color: white;
+    }
+    #results {
+      margin-top: 20px;
+    }
+    #dealer, #player {
+      margin: 10px 0;
+    }
+    img {
+      width: 60px;
+      margin: 5px;
+      transition: transform 0.2s;
+    }
+    img:hover {
+      transform: rotate(10deg);
+    }
+    #instructions {
+      margin-top: 20px;
+      padding: 10px;
+      background: #555;
+      border-radius: 10px;
+      color: #ddd;
+    }
+    #history {
+      margin-top: 20px;
+      background: #333;
+      padding: 10px;
+      border-radius: 10px;
+      color: #ccc;
+    }
+    #history h3 {
+      margin: 0;
+    }
+    #history table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    #history th, #history td {
+      border: 1px solid #555;
+      padding: 8px;
+      text-align: center;
+    }
+    #history th {
+      background: #444;
+    }
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Blackjack Simples</h1>
+  <div id="game-container">
+    <div id="dealer">
+      <h2>Mesa</h2>
+      <div id="dealer-cards"></div>
+      <p id="dealer-score">Pontuação: 0</p>
+    </div>
+    <div id="player">
+      <h2>Você</h2>
+      <div id="player-cards"></div>
+      <p id="player-score">Pontuação: 0</p>
+    </div>
+    <button id="hit">Pedir Carta</button>
+    <button id="stand">Parar</button>
+    <div id="results"></div>
+    <p id="scoreboard">Pontuação Total: 0</p>
+    <div id="instructions">
+      <h3>Instruções:</h3>
+      <p>O objetivo do jogo é chegar o mais próximo possível de 21 sem ultrapassá-lo. Cartas numeradas valem seu número, cartas de figura valem 10, e o Ás vale 1 ou 11, dependendo da situação.</p>
+    </div>
+    <div id="history">
+      <h3>Histórico de Partidas:</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Resultado</th>
+            <th>Pontuação do Jogador</th>
+            <th>Pontuação da Mesa</th>
+            <th>Pontuação Total</th>
+          </tr>
+        </thead>
+        <tbody id="history-list">
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <audio id="card-sound" src="https://example.com/card-flip.mp3"></audio>
+  <audio id="win-sound" src="https://example.com/win.mp3"></audio>
+  <audio id="lose-sound" src="https://example.com/lose.mp3"></audio>
+
+  <script>
+    const apiBase = 'https://deckofcardsapi.com/api/deck/';
+    let deckId;
+    let playerHand = [];
+    let dealerHand = [];
+    let playerScore = 0;
+    let dealerScore = 0;
+    let totalScore = 0;
+
+    const cardSound = document.getElementById("card-sound");
+    const winSound = document.getElementById("win-sound");
+    const loseSound = document.getElementById("lose-sound");
+    const historyList = document.getElementById("history-list");
+
+    async function initializeGame() {
+      const response = await fetch(`${apiBase}new/shuffle/?deck_count=1`);
+      const data = await response.json();
+      deckId = data.deck_id;
+      resetGame();
+    }
+
+    function resetGame() {
+      playerHand = [];
+      dealerHand = [];
+      playerScore = 0;
+      dealerScore = 0;
+      document.getElementById("player-cards").innerHTML = '';
+      document.getElementById("dealer-cards").innerHTML = '';
+      document.getElementById("results").textContent = '';
+      updateScores();
+      drawCard(playerHand, "player", true);
+      drawCard(playerHand, "player", true);
+      drawCard(dealerHand, "dealer", true);
+    }
+
+    async function drawCard(hand, owner, visible = true) {
+      const response = await fetch(`${apiBase}${deckId}/draw/?count=1`);
+      const data = await response.json();
+      const card = data.cards[0];
+      hand.push(card);
+      cardSound.play();
+      updateUI(card, owner, visible);
+      calculateScores();
+    }
+
+    function updateUI(card, owner, visible) {
+      const container = document.getElementById(`${owner}-cards`);
+      const img = document.createElement('img');
+      img.src = visible ? card.image : 'https://via.placeholder.com/60x85.png?text=Hidden';
+      container.appendChild(img);
+    }
+
+    function calculateScores() {
+      playerScore = calculateHand(playerHand);
+      dealerScore = calculateHand(dealerHand);
+      updateScores();
+
+      if (playerScore === 21) {
+        totalScore += 15;
+        winSound.play();
+        alert('Blackjack! Você venceu!');
+        addHistory('Venceu (Blackjack)', playerScore, dealerScore);
+        resetGame();
+        return;
+      }
+
+      if (playerScore > 21) {
+        totalScore -= 20;
+        loseSound.play();
+        alert('Você perdeu! Passou de 21!');
+        addHistory('Perdeu', playerScore, dealerScore);
+        resetGame();
+      }
+    }
+
+    function calculateHand(hand) {
+      let total = 0;
+      let aces = 0;
+
+      hand.forEach(card => {
+        if (card.value === 'ACE') {
+          aces += 1;
+          total += 11;
+        } else if (['KING', 'QUEEN', 'JACK'].includes(card.value)) {
+          total += 10;
+        } else {
+          total += parseInt(card.value);
+        }
+      });
+
+      while (total > 21 && aces) {
+        total -= 10;
+        aces -= 1;
+      }
+
+      return total;
+    }
+
+    function updateScores() {
+      document.getElementById("player-score").textContent = `Pontuação: ${playerScore}`;
+      document.getElementById("dealer-score").textContent = `Pontuação: ${dealerScore}`;
+      document.getElementById("scoreboard").textContent = `Pontuação Total: ${totalScore}`;
+    }
+
+    async function stand() {
+      while (dealerScore < 17) {
+        await drawCard(dealerHand, "dealer", true);
+      }
+
+      determineWinner();
+    }
+
+    function determineWinner() {
+      if (dealerScore > 21 || playerScore > dealerScore) {
+        totalScore += 10;
+        winSound.play();
+        alert('Você venceu!');
+        addHistory('Venceu', playerScore, dealerScore);
+      } else if (playerScore === dealerScore) {
+        alert('Empate!');
+        addHistory('Empate', playerScore, dealerScore);
+      } else {
+        totalScore -= 20;
+        loseSound.play();
+        alert('Você perdeu!');
+        addHistory('Perdeu', playerScore, dealerScore);
+      }
+      resetGame();
+    }
+
+    function addHistory(result, playerScore, dealerScore) {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${result}</td>
+        <td>${playerScore}</td>
+        <td>${dealerScore}</td>
+        <td>${totalScore}</td>
+      `;
+      historyList.appendChild(row);
+    }
+
+    document.getElementById("hit").addEventListener("click", () => drawCard(playerHand, "player", true));
+    document.getElementById("stand").addEventListener("click", stand);
+
+    initializeGame();
+  </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro e Login</title>
+  <link rel="stylesheet" href="login.css">
+  <link rel="icon" href="imagens/avatar.png" type="image/png">
+</head>
+<body>
+  <noscript>
+    <p>Por favor, habilite o JavaScript para usar todos os recursos desta página.</p>
+  </noscript>
+
+  <img src="imagens/backgroundlogin.jpg" alt="Restaurante" class="back">
+
+  <div class="container">
+   
+    <div class="form-container">
+      
+      <form id="register-form" class="form">
+        <h2>Cadastro</h2>
+        <div class="input-group">
+          <label for="register-username">Usuário:</label>
+          <input type="text" id="register-username" name="username" required>
+        </div>
+        <div class="input-group">
+          <label for="register-email">Email:</label>
+          <input type="email" id="register-email" name="email" required>
+        </div>
+        <div class="input-group">
+          <label for="register-password">Senha:</label>
+          <input type="password" id="register-password" name="password" required>
+        </div>
+        <button type="submit">Cadastrar</button>
+      </form>
+
+     
+      <form id="login-form" class="form">
+        <h2>Login</h2>
+        <div class="input-group">
+          <label for="login-username">Usuário:</label>
+          <input type="text" id="login-username" name="username" required>
+        </div>
+        <div class="input-group">
+          <label for="login-password">Senha:</label>
+          <input type="password" id="login-password" name="password" required>
+        </div>
+        <button type="submit">Entrar</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="popup-container"></div>
+
+
+  <script src="login.js"></script>
+</body>
+</html>
